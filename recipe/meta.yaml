@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/python_ulid-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/python_ulid-{{ version }}.tar.gz
   sha256: e50296a47dc8209d28629a22fc81ca26c00982c78934bd7766377ba37ea49a9f
 
 build:
@@ -14,17 +14,17 @@ build:
     - ulid = ulid.__main__:entrypoint
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.9
+    - python {{ python_min }}
     - hatchling
     - hatch-vcs
     - hatch-fancy-pypi-readme
     - pip
   run:
-    - python >=3.9
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -34,6 +34,7 @@ test:
     - ulid --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   summary: Universally unique lexicographically sortable identifier
