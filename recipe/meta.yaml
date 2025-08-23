@@ -1,5 +1,5 @@
 {% set name = "python-ulid" %}
-{% set version = "3.0.0" %}
+{% set version = "3.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,14 +7,14 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/python_ulid-{{ version }}.tar.gz
-  sha256: e50296a47dc8209d28629a22fc81ca26c00982c78934bd7766377ba37ea49a9f
+  sha256: ff0410a598bc5f6b01b602851a3296ede6f91389f913a5d5f8c496003836f636
 
 build:
   entry_points:
     - ulid = ulid.__main__:entrypoint
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   host:
@@ -25,6 +25,7 @@ requirements:
     - pip
   run:
     - python >={{ python_min }}
+    - typing_extensions
 
 test:
   imports:
