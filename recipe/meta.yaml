@@ -25,6 +25,7 @@ requirements:
     - pip
   run:
     - python >={{ python_min }}
+    - typing_extensions
 
 test:
   imports:
